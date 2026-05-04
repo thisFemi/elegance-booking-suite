@@ -14,16 +14,200 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      attendance: {
+        Row: {
+          checked_in: boolean
+          checked_in_at: string | null
+          checked_in_by: string | null
+          created_at: string
+          event_id: string
+          id: string
+          registration_id: string
+        }
+        Insert: {
+          checked_in?: boolean
+          checked_in_at?: string | null
+          checked_in_by?: string | null
+          created_at?: string
+          event_id: string
+          id?: string
+          registration_id: string
+        }
+        Update: {
+          checked_in?: boolean
+          checked_in_at?: string | null
+          checked_in_by?: string | null
+          created_at?: string
+          event_id?: string
+          id?: string
+          registration_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "attendance_event_id_fkey"
+            columns: ["event_id"]
+            isOneToOne: false
+            referencedRelation: "events"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "attendance_registration_id_fkey"
+            columns: ["registration_id"]
+            isOneToOne: false
+            referencedRelation: "registrations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      events: {
+        Row: {
+          address: string | null
+          created_at: string
+          description: string | null
+          end_time: string | null
+          event_date: string
+          id: string
+          start_time: string
+          status: string
+          title: string
+          total_slots: number
+          updated_at: string
+          venue: string
+        }
+        Insert: {
+          address?: string | null
+          created_at?: string
+          description?: string | null
+          end_time?: string | null
+          event_date: string
+          id?: string
+          start_time: string
+          status?: string
+          title: string
+          total_slots?: number
+          updated_at?: string
+          venue: string
+        }
+        Update: {
+          address?: string | null
+          created_at?: string
+          description?: string | null
+          end_time?: string | null
+          event_date?: string
+          id?: string
+          start_time?: string
+          status?: string
+          title?: string
+          total_slots?: number
+          updated_at?: string
+          venue?: string
+        }
+        Relationships: []
+      }
+      registrations: {
+        Row: {
+          agency_name: string | null
+          business_name: string | null
+          business_type: string | null
+          created_at: string
+          department: string | null
+          email: string
+          event_id: string
+          experience_level: string
+          first_name: string
+          id: string
+          last_name: string
+          participation_type: string
+          phone: string
+          qr_code: string | null
+          role: string
+          status: string
+          updated_at: string
+          what_to_learn: string | null
+        }
+        Insert: {
+          agency_name?: string | null
+          business_name?: string | null
+          business_type?: string | null
+          created_at?: string
+          department?: string | null
+          email: string
+          event_id: string
+          experience_level: string
+          first_name: string
+          id?: string
+          last_name: string
+          participation_type: string
+          phone: string
+          qr_code?: string | null
+          role: string
+          status?: string
+          updated_at?: string
+          what_to_learn?: string | null
+        }
+        Update: {
+          agency_name?: string | null
+          business_name?: string | null
+          business_type?: string | null
+          created_at?: string
+          department?: string | null
+          email?: string
+          event_id?: string
+          experience_level?: string
+          first_name?: string
+          id?: string
+          last_name?: string
+          participation_type?: string
+          phone?: string
+          qr_code?: string | null
+          role?: string
+          status?: string
+          updated_at?: string
+          what_to_learn?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "registrations_event_id_fkey"
+            columns: ["event_id"]
+            isOneToOne: false
+            referencedRelation: "events"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      user_roles: {
+        Row: {
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin" | "moderator" | "user"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +334,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin", "moderator", "user"],
+    },
   },
 } as const
