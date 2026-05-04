@@ -1,6 +1,6 @@
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
-import FilterBar from "@/components/FilterBar";
+
 import EventCard from "@/components/EventCard";
 import ReportsSection from "@/components/ReportsSection";
 import Footer from "@/components/Footer";
