@@ -30,12 +30,12 @@ const reports = [
 
 const ReportsSection = () => {
   return (
-    <section id="reports" className="py-20 bg-muted/30">
+    <section id="reports" className="py-20 bg-muted/50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 mb-10">
           <div>
             <div className="flex items-center gap-2 mb-2">
-              <div className="w-8 h-8 rounded-lg hero-gradient flex items-center justify-center">
+              <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
                 <BarChart3 className="w-4 h-4 text-primary-foreground" />
               </div>
               <span className="text-xs font-body font-semibold uppercase tracking-wider text-muted-foreground">
@@ -43,13 +43,13 @@ const ReportsSection = () => {
               </span>
             </div>
             <h2 className="font-heading font-bold text-2xl sm:text-3xl text-foreground">
-              Spool & Download <span className="text-gradient-gold">Reports</span>
+              Download Reports
             </h2>
             <p className="text-muted-foreground font-body mt-2 max-w-md">
-              Generate detailed reports on bookings, attendance, and venue analytics with a single click.
+              Generate detailed reports on bookings, attendance, and venue analytics.
             </p>
           </div>
-          <Button variant="hero" size="sm" className="shrink-0">
+          <Button variant="default" size="sm" className="shrink-0">
             <BarChart3 className="w-4 h-4" />
             Generate All Reports
           </Button>
@@ -59,18 +59,18 @@ const ReportsSection = () => {
           {reports.map((report) => (
             <div
               key={report.title}
-              className="glass-card rounded-xl p-5 hover-lift group cursor-pointer"
+              className="glass-card rounded-lg p-5 hover-lift group cursor-pointer"
             >
-              <div className="w-10 h-10 rounded-xl bg-muted flex items-center justify-center mb-4 group-hover:bg-primary/10 transition-colors">
-                <report.icon className="w-5 h-5 text-secondary group-hover:text-primary transition-colors" />
+              <div className="w-10 h-10 rounded-lg bg-muted flex items-center justify-center mb-4 group-hover:bg-accent/10 transition-colors">
+                <report.icon className="w-5 h-5 text-muted-foreground group-hover:text-accent transition-colors" />
               </div>
               <h3 className="font-heading font-semibold text-foreground text-sm">{report.title}</h3>
               <p className="text-xs text-muted-foreground font-body mt-1.5 leading-relaxed">
                 {report.description}
               </p>
-              <div className="flex items-center justify-between mt-4 pt-3 border-t border-border/50">
+              <div className="flex items-center justify-between mt-4 pt-3 border-t border-border">
                 <span className="text-xs text-muted-foreground font-body">{report.type}</span>
-                <button className="flex items-center gap-1 text-xs font-body font-medium text-secondary hover:text-primary transition-colors">
+                <button className="flex items-center gap-1 text-xs font-body font-medium text-accent hover:text-primary transition-colors">
                   <Download className="w-3 h-3" />
                   Export
                 </button>
