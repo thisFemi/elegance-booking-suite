@@ -7,6 +7,7 @@ import Footer from "@/components/Footer";
 
 const events = [
   {
+    id: "evt-1",
     date: "04",
     month: "May",
     time: "9:00 AM",
@@ -17,6 +18,7 @@ const events = [
     status: "open" as const,
   },
   {
+    id: "evt-2",
     date: "04",
     month: "May",
     time: "9:00 AM",
@@ -27,6 +29,7 @@ const events = [
     status: "filling" as const,
   },
   {
+    id: "evt-3",
     date: "04",
     month: "May",
     time: "9:00 AM",
@@ -37,6 +40,7 @@ const events = [
     status: "filling" as const,
   },
   {
+    id: "evt-4",
     date: "06",
     month: "May",
     time: "9:00 AM",
@@ -47,6 +51,7 @@ const events = [
     status: "open" as const,
   },
   {
+    id: "evt-5",
     date: "06",
     month: "May",
     time: "9:00 AM",
@@ -57,6 +62,7 @@ const events = [
     status: "almost-full" as const,
   },
   {
+    id: "evt-6",
     date: "06",
     month: "May",
     time: "9:00 AM",
@@ -74,25 +80,20 @@ const Index = () => {
       <Navbar />
       <HeroSection />
 
-      {/* Events Section */}
-      <section id="events" className="relative">
+      <section id="events" className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <FilterBar />
-
-          <div className="mt-10 mb-4 flex items-center justify-between">
-            <div>
-              <h2 className="font-heading font-bold text-2xl sm:text-3xl text-foreground">
-                Upcoming <span className="text-gradient-gold">Events</span>
-              </h2>
-              <p className="text-sm text-muted-foreground font-body mt-1">
-                {events.length} events available · February 16 – March 19, 2026
-              </p>
-            </div>
+          <div className="mb-8">
+            <h2 className="font-heading font-bold text-2xl sm:text-3xl text-foreground">
+              Upcoming Events
+            </h2>
+            <p className="text-sm text-muted-foreground font-body mt-1">
+              {events.length} events available
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 pb-16">
-            {events.map((event, i) => (
-              <EventCard key={i} {...event} />
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+            {events.map((event) => (
+              <EventCard key={event.id} {...event} />
             ))}
           </div>
         </div>
