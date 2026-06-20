@@ -1,9 +1,7 @@
-import { MapPin, Clock, Users, ArrowRight } from "lucide-react";
+import { MapPin, Clock, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useNavigate } from "react-router-dom";
 
 interface EventCardProps {
-  id: string;
   date: string;
   month: string;
   time: string;
@@ -14,13 +12,12 @@ interface EventCardProps {
   status: "open" | "filling" | "almost-full";
 }
 
-const EventCard = ({ id, date, month, time, title, venue, slotsLeft, totalSlots, status }: EventCardProps) => {
-  const navigate = useNavigate();
+const EventCard = ({ date, month, time, title, venue, slotsLeft, totalSlots, status }: EventCardProps) => {
   const fillPercent = ((totalSlots - slotsLeft) / totalSlots) * 100;
 
   const statusColors = {
-    open: "bg-success/10 text-success",
-    filling: "bg-warning/10 text-warning",
+    open: "bg-emerald-glow/10 text-secondary",
+    filling: "bg-accent/10 text-accent",
     "almost-full": "bg-destructive/10 text-destructive",
   };
 
@@ -31,24 +28,23 @@ const EventCard = ({ id, date, month, time, title, venue, slotsLeft, totalSlots,
   };
 
   return (
-    <div
-      className="group glass-card rounded-lg overflow-hidden hover-lift cursor-pointer"
-      onClick={() => navigate(`/event/${id}`)}
-    >
+    <div className="group glass-card rounded-xl overflow-hidden hover-lift cursor-pointer">
       <div className="flex flex-col sm:flex-row">
-        <div className="sm:w-24 p-4 sm:p-5 flex sm:flex-col items-center justify-center gap-2 sm:gap-0 bg-primary text-primary-foreground shrink-0">
-          <span className="text-xs font-body uppercase tracking-wider opacity-70">{month}</span>
+        {/* Date block */}
+        <div className="sm:w-24 p-4 sm:p-5 flex sm:flex-col items-center justify-center gap-2 sm:gap-0 hero-gradient text-primary-foreground shrink-0">
+          <span className="text-xs font-body uppercase tracking-wider opacity-80">{month}</span>
           <span className="text-3xl font-heading font-bold leading-none">{date}</span>
-          <div className="flex items-center gap-1 mt-1 opacity-60">
+          <div className="flex items-center gap-1 mt-1 opacity-70">
             <Clock className="w-3 h-3" />
             <span className="text-xs font-body">{time}</span>
           </div>
         </div>
 
+        {/* Content */}
         <div className="flex-1 p-4 sm:p-5 flex flex-col gap-3">
           <div className="flex items-start justify-between gap-3">
             <div className="flex-1 min-w-0">
-              <h3 className="font-heading font-semibold text-foreground text-base leading-tight group-hover:text-accent transition-colors line-clamp-2">
+              <h3 className="font-heading font-semibold text-foreground text-base leading-tight group-hover:text-secondary transition-colors line-clamp-2">
                 {title}
               </h3>
               <div className="flex items-center gap-1.5 mt-1.5 text-muted-foreground">
@@ -61,6 +57,7 @@ const EventCard = ({ id, date, month, time, title, venue, slotsLeft, totalSlots,
             </span>
           </div>
 
+          {/* Capacity bar */}
           <div className="space-y-1.5">
             <div className="flex items-center justify-between text-xs text-muted-foreground">
               <div className="flex items-center gap-1">
@@ -71,16 +68,15 @@ const EventCard = ({ id, date, month, time, title, venue, slotsLeft, totalSlots,
             </div>
             <div className="h-1.5 bg-muted rounded-full overflow-hidden">
               <div
-                className="h-full rounded-full bg-primary transition-all duration-500"
+                className="h-full rounded-full hero-gradient transition-all duration-500"
                 style={{ width: `${fillPercent}%` }}
               />
             </div>
           </div>
 
           <div className="flex justify-end pt-1">
-            <Button variant="default" size="sm" className="text-xs group/btn">
-              Register
-              <ArrowRight className="w-3 h-3 group-hover/btn:translate-x-0.5 transition-transform" />
+            <Button variant="hero" size="sm" className="text-xs">
+              Book Slot
             </Button>
           </div>
         </div>
