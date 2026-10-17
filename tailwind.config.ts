@@ -18,18 +18,11 @@ export default {
       },
     extend: {
       colors: {
-        gold: {
-          DEFAULT: "hsl(var(--gold))",
-          light: "hsl(var(--gold-light))",
-        },
-        emerald: {
-          deep: "hsl(var(--emerald-deep))",
-          glow: "hsl(var(--emerald-glow))",
-        },
-        cream: {
-          DEFAULT: "hsl(var(--cream))",
-          dark: "hsl(var(--cream-dark))",
-        },
+        success: { DEFAULT: "hsl(var(--success))", soft: "hsl(var(--success-soft))" },
+        warning: { DEFAULT: "hsl(var(--warning))", foreground: "hsl(var(--warning-foreground))", soft: "hsl(var(--warning-soft))" },
+        info: { DEFAULT: "hsl(var(--info))", soft: "hsl(var(--info-soft))" },
+        "danger-soft": "hsl(var(--danger-soft))",
+        "primary-soft": "hsl(var(--primary-soft))",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
