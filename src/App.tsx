@@ -6,27 +6,7 @@ import { AppStoreProvider } from "@/store/AppStore";
 import AppShell from "@/components/AppShell";
 import RoleSelect from "./pages/RoleSelect";
 import NotFound from "./pages/NotFound";
-import Dashboard from "./pages/participant/Dashboard";
-import Catalogue from "./pages/participant/Catalogue";
-import TrainingDetail from "./pages/participant/TrainingDetail";
-import Apply from "./pages/participant/Apply";
-import MyTrainings from "./pages/participant/MyTrainings";
-import ApplicationDetail from "./pages/participant/ApplicationDetail";
-import CalendarPage from "./pages/participant/CalendarPage";
-import Notifications from "./pages/shared/Notifications";
-import Profile from "./pages/participant/Profile";
-import { Confirmation, Certificate } from "./pages/participant/Documents";
-import AdminDashboard from "./pages/admin/AdminDashboard";
-import AdminTrainings from "./pages/admin/AdminTrainings";
-import TrainingForm from "./pages/admin/TrainingForm";
-import AdminTrainingDetail from "./pages/admin/AdminTrainingDetail";
-import Attendance from "./pages/admin/Attendance";
-import AdminApplications from "./pages/admin/AdminApplications";
-import AdminApplicationDetail from "./pages/admin/AdminApplicationDetail";
-import Participants from "./pages/admin/Participants";
-import Venues from "./pages/admin/Venues";
-import Reports from "./pages/admin/Reports";
-import SettingsPage from "./pages/admin/SettingsPage";
+import ComingSoon from "./pages/ComingSoon";
 
 const queryClient = new QueryClient();
 
@@ -39,32 +19,32 @@ const App = () => (
           <Routes>
             <Route path="/" element={<RoleSelect />} />
             <Route path="/app" element={<AppShell role="participant" />}>
-              <Route index element={<Dashboard />} />
-              <Route path="trainings" element={<Catalogue />} />
-              <Route path="trainings/:id" element={<TrainingDetail />} />
-              <Route path="trainings/:id/apply" element={<Apply />} />
-              <Route path="my-trainings" element={<MyTrainings />} />
-              <Route path="my-trainings/:appId" element={<ApplicationDetail />} />
-              <Route path="my-trainings/:appId/confirmation" element={<Confirmation />} />
-              <Route path="my-trainings/:appId/certificate" element={<Certificate />} />
-              <Route path="calendar" element={<CalendarPage />} />
-              <Route path="notifications" element={<Notifications audience="participant" />} />
-              <Route path="profile" element={<Profile />} />
+              <Route index element={<ComingSoon />} />
+              <Route path="trainings" element={<ComingSoon />} />
+              <Route path="trainings/:id" element={<ComingSoon />} />
+              <Route path="trainings/:id/apply" element={<ComingSoon />} />
+              <Route path="my-trainings" element={<ComingSoon />} />
+              <Route path="my-trainings/:appId" element={<ComingSoon />} />
+              <Route path="my-trainings/:appId/confirmation" element={<ComingSoon />} />
+              <Route path="my-trainings/:appId/certificate" element={<ComingSoon />} />
+              <Route path="calendar" element={<ComingSoon />} />
+              <Route path="notifications" element={<ComingSoon />} />
+              <Route path="profile" element={<ComingSoon />} />
             </Route>
             <Route path="/admin" element={<AppShell role="admin" />}>
-              <Route index element={<AdminDashboard />} />
-              <Route path="trainings" element={<AdminTrainings />} />
-              <Route path="trainings/new" element={<TrainingForm />} />
-              <Route path="trainings/:id" element={<AdminTrainingDetail />} />
-              <Route path="trainings/:id/edit" element={<TrainingForm />} />
-              <Route path="trainings/:id/attendance" element={<Attendance />} />
-              <Route path="applications" element={<AdminApplications />} />
-              <Route path="applications/:appId" element={<AdminApplicationDetail />} />
-              <Route path="participants" element={<Participants />} />
-              <Route path="venues" element={<Venues />} />
-              <Route path="reports" element={<Reports />} />
-              <Route path="notifications" element={<Notifications audience="admin" />} />
-              <Route path="settings" element={<SettingsPage />} />
+              <Route index element={<ComingSoon />} />
+              <Route path="trainings" element={<ComingSoon />} />
+              <Route path="trainings/new" element={<ComingSoon />} />
+              <Route path="trainings/:id" element={<ComingSoon />} />
+              <Route path="trainings/:id/edit" element={<ComingSoon />} />
+              <Route path="trainings/:id/attendance" element={<ComingSoon />} />
+              <Route path="applications" element={<ComingSoon />} />
+              <Route path="applications/:appId" element={<ComingSoon />} />
+              <Route path="participants" element={<ComingSoon />} />
+              <Route path="venues" element={<ComingSoon />} />
+              <Route path="reports" element={<ComingSoon />} />
+              <Route path="notifications" element={<ComingSoon />} />
+              <Route path="settings" element={<ComingSoon />} />
             </Route>
             <Route path="*" element={<NotFound />} />
           </Routes>
