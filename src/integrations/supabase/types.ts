@@ -59,54 +59,144 @@ export type Database = {
           },
         ]
       }
+      communication_drafts: {
+        Row: {
+          body: string
+          created_at: string
+          event_id: string | null
+          id: string
+          status: string
+          subject: string
+        }
+        Insert: {
+          body: string
+          created_at?: string
+          event_id?: string | null
+          id?: string
+          status?: string
+          subject: string
+        }
+        Update: {
+          body?: string
+          created_at?: string
+          event_id?: string | null
+          id?: string
+          status?: string
+          subject?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "communication_drafts_event_id_fkey"
+            columns: ["event_id"]
+            isOneToOne: false
+            referencedRelation: "events"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       events: {
         Row: {
+          additional_info: string
           address: string | null
+          approval_required: boolean
+          audience: string
+          category: string
+          city: string
           created_at: string
           description: string | null
           end_time: string | null
           event_date: string
           id: string
+          objectives: string[]
+          reg_close: string | null
+          reg_open: string
+          requirements: string[]
           start_time: string
           status: string
           title: string
           total_slots: number
+          trainer: string
           updated_at: string
           venue: string
         }
         Insert: {
+          additional_info?: string
           address?: string | null
+          approval_required?: boolean
+          audience?: string
+          category?: string
+          city?: string
           created_at?: string
           description?: string | null
           end_time?: string | null
           event_date: string
           id?: string
+          objectives?: string[]
+          reg_close?: string | null
+          reg_open?: string
+          requirements?: string[]
           start_time: string
           status?: string
           title: string
           total_slots?: number
+          trainer?: string
           updated_at?: string
           venue: string
         }
         Update: {
+          additional_info?: string
           address?: string | null
+          approval_required?: boolean
+          audience?: string
+          category?: string
+          city?: string
           created_at?: string
           description?: string | null
           end_time?: string | null
           event_date?: string
           id?: string
+          objectives?: string[]
+          reg_close?: string | null
+          reg_open?: string
+          requirements?: string[]
           start_time?: string
           status?: string
           title?: string
           total_slots?: number
+          trainer?: string
           updated_at?: string
           venue?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          avatar_url: string
+          display_name: string
+          id: string
+          preferences: Json
+          updated_at: string
+        }
+        Insert: {
+          avatar_url?: string
+          display_name?: string
+          id: string
+          preferences?: Json
+          updated_at?: string
+        }
+        Update: {
+          avatar_url?: string
+          display_name?: string
+          id?: string
+          preferences?: Json
+          updated_at?: string
         }
         Relationships: []
       }
       registrations: {
         Row: {
           agency_name: string | null
+          attendance_status: string | null
           business_name: string | null
           business_type: string | null
           created_at: string
@@ -117,9 +207,11 @@ export type Database = {
           first_name: string
           id: string
           last_name: string
+          organisation: string
           participation_type: string
           phone: string
           qr_code: string | null
+          reference: string | null
           role: string
           status: string
           updated_at: string
@@ -127,6 +219,7 @@ export type Database = {
         }
         Insert: {
           agency_name?: string | null
+          attendance_status?: string | null
           business_name?: string | null
           business_type?: string | null
           created_at?: string
@@ -137,9 +230,11 @@ export type Database = {
           first_name: string
           id?: string
           last_name: string
+          organisation?: string
           participation_type: string
           phone: string
           qr_code?: string | null
+          reference?: string | null
           role: string
           status?: string
           updated_at?: string
@@ -147,6 +242,7 @@ export type Database = {
         }
         Update: {
           agency_name?: string | null
+          attendance_status?: string | null
           business_name?: string | null
           business_type?: string | null
           created_at?: string
@@ -157,9 +253,11 @@ export type Database = {
           first_name?: string
           id?: string
           last_name?: string
+          organisation?: string
           participation_type?: string
           phone?: string
           qr_code?: string | null
+          reference?: string | null
           role?: string
           status?: string
           updated_at?: string
@@ -193,17 +291,62 @@ export type Database = {
         }
         Relationships: []
       }
+      venues: {
+        Row: {
+          address: string
+          capacity: number
+          city: string
+          id: string
+          name: string
+          status: string
+        }
+        Insert: {
+          address?: string
+          capacity?: number
+          city?: string
+          id?: string
+          name: string
+          status?: string
+        }
+        Update: {
+          address?: string
+          capacity?: number
+          city?: string
+          id?: string
+          name?: string
+          status?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
+      event_availability: {
+        Args: never
+        Returns: {
+          event_id: string
+          registered: number
+        }[]
+      }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]
           _user_id: string
         }
         Returns: boolean
+      }
+      register_for_training: {
+        Args: {
+          p_email: string
+          p_event_id: string
+          p_name: string
+          p_organisation: string
+          p_phone: string
+          p_role: string
+        }
+        Returns: Json
       }
     }
     Enums: {
